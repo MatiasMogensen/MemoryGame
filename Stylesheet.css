@@ -1,0 +1,94 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color:rgb(211, 204, 100);
+}
+
+.container{
+    background-color: blanchedalmond;
+
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    border-radius: 15px;
+    padding: 30px 60px;
+}
+
+.gameName{
+    color: black;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: xx-large;
+    letter-spacing: 1px;
+}
+
+.reset{
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: medium;
+    letter-spacing: 1px;
+    cursor: pointer;
+    color: white;
+    background: purple;
+}
+
+/* Modals
+--------------------------------------------------------------------------------------------------
+*/
+
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modalMeny {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.modalMeny button {
+    margin: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+
+
+/* 
+Game
+--------------------------------------------------------------------------------------------------
+*/
+
+#game{
+display: grid;
+margin: 20px auto;
+max-width: 80%;
+}
+
+.card {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    height: 100px; /* Adjust as needed */
+}
