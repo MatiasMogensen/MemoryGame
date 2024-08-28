@@ -15,6 +15,9 @@ body{
     align-items: center;
     flex-direction: column;
 
+    width: 80%;
+    height: 80%;
+
     border-radius: 15px;
     padding: 30px 60px;
 }
@@ -28,6 +31,7 @@ body{
 
 .reset{
     border-radius: 5px;
+    margin-top: 5%;
     padding: 10px 20px;
     font-size: medium;
     letter-spacing: 1px;
@@ -53,22 +57,27 @@ body{
 }
 
 .modalMeny {
-    background-color: #fff;
+    color: black;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: large;
+    letter-spacing: 1px;
+    
+    background-color: blanchedalmond;
+    border-radius: 10px;
     margin: 15% auto;
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 400px;
+    width: 70%;
     text-align: center;
 }
 
 .modalMeny button {
-    margin: 10px;
+    border-radius: 5px;
     padding: 10px 20px;
+    font-size: medium;
     cursor: pointer;
+    color: white;
+    background: purple;
 }
-
-
 
 /* 
 Game
@@ -77,18 +86,58 @@ Game
 
 #game{
 display: grid;
-margin: 20px auto;
-max-width: 80%;
+width: 80%;
+gap: 1rem;
 }
 
 .card {
-    background-color: #f2f2f2;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    
+    /*Must have or everything turns white*/
+    position: relative;
+
+    background-color: white;
+    border: none;
+    border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
     cursor: pointer;
-    height: 100px; /* Adjust as needed */
+    height: 8rem; 
+    width: 100%;
+    transition: 500ms;
+    transform: rotateY(180deg);
+}
+
+.card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: white;
+    transition: 500ms;
+    transform: rotateY(0deg);
+}
+
+.card.cardSelected {
+    transform: rotateY(0deg);
+}
+
+.cardSelected:after{
+    opacity: 0;
+    transform: rotateY(180deg);
+}
+
+.matched {
+        /*Must have or everything turns white*/
+        position: relative;
+
+        background-color: white;
+        border: none;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        height: 8rem; 
+        width: 100%;
+        pointer-events: none;
 }
