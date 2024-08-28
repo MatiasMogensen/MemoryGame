@@ -16,14 +16,14 @@ Prerequisites
 Installation
 
   Clone the repository:
-    git clone https://github.com/yourusername/memory-game.git
+    git clone https://github.com/MatiasMogensen/memory-game.git
 
   Navigate to the project directory:
     cd memory-game
 
-  Open the index.html file in your browser:
+  Open the main.html file in your browser:
 
-You can open it directly by double-clicking on the index.html file or by using a live server in a code editor like VSCode.
+You can open it directly by double-clicking on the main.html file or by using a live server in a code editor like VSCode.
 
 How to Play
 
