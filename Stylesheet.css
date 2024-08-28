@@ -130,7 +130,8 @@ gap: 1rem;
         /*Must have or everything turns white*/
         position: relative;
 
-        background-color: white;
+        color: white;
+        background-color: green;
         border: none;
         border-radius: 5px;
         display: flex;
