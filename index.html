@@ -1,0 +1,139 @@
+<!--Updated code that i played around with outside of the allowed 5 hours-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minne spill</title>
+    <link rel="stylesheet" href="Stylesheet.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 class="gameName">Minnespill</h1>
+        <div id="game"></div>
+        <button class="reset" id="resetButton">Restart</button>
+    </div>
+
+    <div id="sizeModal" class="modal">
+        <div class="modalMeny">
+            <h2>Select your game size</h2>
+            <button gameSize="2">2x2</button>
+            <button gameSize="4">4x4</button>
+            <button gameSize="6">6x6</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('sizeModal');
+            const buttons = modal.querySelectorAll('button');
+
+            modal.style.display = 'block';
+
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const size = button.getAttribute('gameSize');
+                    startGame(size);
+                    modal.style.display = 'none';
+                });
+            });
+
+            document.getElementById('resetButton').addEventListener('click', reset);
+        });
+
+        function startGame(size) {
+            const gameBoard = document.getElementById('game');
+            gameBoard.innerHTML = '';
+            gameBoard.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+            gameBoard.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+
+            const cardIdentifiers = {
+                2: ["1", "1", "2", "2"],
+                4: ["1", "1", "2", "2", "3", "3", "4", "4", "5", "5", "6", "6", "7", "7", "8", "8"],
+                6: ["1", "1", "2", "2", "3", "3", "4", "4", "5", "5", "6", "6", "7", "7", "8", "8", "9", "9", "10", "10", "11", "11", "12", "12", "13", "13", "14", "14", "15", "15", "16", "16", "17", "17", "18", "18"]
+            };
+
+            const shuffled = shuffleArray(cardIdentifiers[size]);
+            const fragment = document.createDocumentFragment();
+
+            shuffled.forEach(identifier => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                card.textContent = identifier;
+
+                card.addEventListener('click', handleCardClick);
+
+                fragment.appendChild(card);
+            });
+
+            gameBoard.appendChild(fragment);
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function handleCardClick(event) {
+            const selectedCard = event.target;
+            selectedCard.classList.add('cardSelected');
+
+            const selectedCards = document.querySelectorAll('.cardSelected');
+            if (selectedCards.length === 2) {
+                disableCards(true);
+                setTimeout(() => {
+                    checkForMatch(selectedCards);
+                    disableCards(false)
+                }, 500);
+            }
+        }
+
+        function checkForMatch(cards) {
+            const [firstCard, secondCard] = cards;
+
+            if (firstCard.textContent === secondCard.textContent) {
+                firstCard.classList.add('matched');
+                secondCard.classList.add('matched');
+
+                firstCard.classList.remove('card');
+                secondCard.classList.remove('card');
+            }
+
+            firstCard.classList.remove('cardSelected');
+            secondCard.classList.remove('cardSelected');
+
+            if (document.querySelectorAll('.card').length == 0) {
+                setTimeout(() => {
+                    alert("You win! Choose a new board to play again.");
+                    reset();
+                }, 500);
+            }
+        }
+
+        function disableCards(disable) {
+    const allCards = document.querySelectorAll('.card');
+    allCards.forEach(card => {
+        if (disable) {
+            card.style.pointerEvents = 'none'; // Deaktiver klikk på kortene
+        } else {
+            card.style.pointerEvents = ''; // Aktiver klikk på kortene
+        }
+    });
+}
+
+        function reset() {
+            const modal = document.getElementById('sizeModal');
+            modal.style.display = 'block';
+        }
+    </script>
+
+</body>
+
+</html>
