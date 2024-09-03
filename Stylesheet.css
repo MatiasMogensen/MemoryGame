@@ -84,15 +84,15 @@ Game
 --------------------------------------------------------------------------------------------------
 */
 
-#game{
-display: grid;
-width: 80%;
-gap: 1rem;
+#game {
+    display: grid;
+    width: 80%;
+    gap: 1rem;
+    margin: auto; /* Sentraliserer hele spillbrettet */
 }
 
 .card {
-    
-    /*Must have or everything turns white*/
+    /* Må ha eller alt blir hvitt */
     position: relative;
 
     background-color: white;
@@ -104,6 +104,8 @@ gap: 1rem;
     cursor: pointer;
     height: 8rem; 
     width: 100%;
+    max-width: 10rem; /* Sett en maksimal bredde for å begrense på store skjermer */
+    margin: auto; /* Sentraliserer kortene i gridcellene */
     transition: 500ms;
     transform: rotateY(180deg);
 }
@@ -121,24 +123,26 @@ gap: 1rem;
     transform: rotateY(0deg);
 }
 
-.cardSelected:after{
+.cardSelected:after {
     opacity: 0;
     transform: rotateY(180deg);
 }
 
 .matched {
-        /*Must have or everything turns white*/
-        position: relative;
+    /* Må ha eller alt blir hvitt */
+    position: relative;
 
-        color: white;
-        background-color: green;
-        border: none;
-        border-radius: 5px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        height: 8rem; 
-        width: 100%;
-        pointer-events: none;
+    color: white;
+    background-color: green;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    height: 8rem; 
+    width: 100%;
+    max-width: 10rem; /* Samme maksimale bredde for å matche kortene */
+    margin: auto; /* Sentraliserer kortene i gridcellene */
+    pointer-events: none;
 }
